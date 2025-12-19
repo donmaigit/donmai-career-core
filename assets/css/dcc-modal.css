@@ -1,0 +1,211 @@
+/* ==========================================================================
+   1. TRIGGER BUTTON (Split Design: Blue Icon | White Text)
+   ========================================================================== */
+.dcc-modal-trigger {
+    background-color: #fff !important;
+    border: 2px solid #000055 !important; /* Dark Blue Border */
+    color: #000055 !important; /* Dark Blue Text */
+    border-radius: 4px;
+    padding: 0 !important; /* Remove padding so icon touches edge */
+    display: inline-flex !important;
+    align-items: stretch; /* Stretch icon to full height */
+    overflow: hidden;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    min-width: 180px;
+    height: 40px; 
+    line-height: 1; 
+    transition: all 0.2s;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Text Wrapper for Centering */
+.dcc-modal-trigger span {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center horizontally */
+    width: 100%;
+    height: 100%;
+    padding: 0 15px;
+}
+
+/* Icon Box (Left Side) */
+.dcc-modal-trigger:before {
+    content: "+";
+    background-color: #000055; /* Dark Blue Background */
+    color: #fff;
+    width: 40px;
+    height: 100%; /* Full height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+/* Hover Effect */
+.dcc-modal-trigger:hover {
+    background-color: #f0f4ff !important;
+}
+
+/* Active State (Green) */
+.dcc-modal-trigger.has-selection {
+    border-color: #00a000 !important; /* Green Border */
+    color: #00a000 !important;
+}
+.dcc-modal-trigger.has-selection:before {
+    content: "✓";
+    background-color: #00a000; /* Green Background */
+}
+
+/* Clear Filter Link */
+.dcc-clear-trigger {
+    font-size: 12px; margin-left: 10px; cursor: pointer; text-decoration: underline; 
+    color: #999; pointer-events: none; opacity: 0.5; transition: all 0.2s;
+}
+.dcc-clear-trigger.active {
+    color: #1967d2; pointer-events: auto; opacity: 1;
+}
+
+/* ==========================================================================
+   2. MODAL OVERLAY & BOX
+   ========================================================================== */
+.dcc-modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5); z-index: 99999;
+    align-items: center; justify-content: center;
+    display: none; /* Hidden by default */
+}
+
+.dcc-modal-box {
+    background: #f8f9fa; /* Light gray bg */
+    width: 700px; max-width: 95%;
+    border-radius: 4px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    display: flex; flex-direction: column;
+    max-height: 90vh; overflow: hidden;
+}
+
+/* Header */
+.dcc-modal-header {
+    background: #0a1f68; /* Deep Blue */
+    padding: 15px 20px;
+    display: flex; justify-content: space-between; align-items: center;
+    color: #fff;
+}
+.dcc-modal-header h3 { margin: 0; font-size: 18px; font-weight: bold; color: #fff; }
+.dcc-modal-close { font-size: 24px; cursor: pointer; color: #fff; opacity: 0.8; line-height: 1; }
+.dcc-modal-close:hover { opacity: 1; }
+
+/* Instruction Bar */
+.dcc-modal-instruction-bar {
+    background: #fff;
+    color: #28a745; /* Green text */
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+}
+
+/* ==========================================================================
+   3. BODY & ACCORDION
+   ========================================================================== */
+.dcc-modal-body {
+    overflow-y: auto; flex-grow: 1; background: #f8f9fa;
+}
+.dcc-modal-body.no-padding { padding: 0; }
+
+/* Accordion Header */
+.dcc-accordion-heading {
+    background: #0a1f68; color: #fff; padding: 12px 20px; font-weight: bold; font-size: 15px;
+    cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.dcc-arrow { font-size: 12px; transition: transform 0.3s ease; }
+.dcc-accordion-heading.active .dcc-arrow { transform: rotate(180deg); }
+
+/* Accordion Content */
+.dcc-accordion-content {
+    background: #fff; padding: 15px 20px; border-bottom: 1px solid #eee;
+}
+
+/* Checklist Grid */
+.dcc-modal-checklist {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 Columns */
+    gap: 10px;
+}
+
+/* "ALL" Item - Spans full width */
+.dcc-modal-item-all {
+    grid-column: 1 / -1; /* Span all columns */
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+}
+
+.dcc-modal-item-label {
+    display: flex; align-items: center; font-size: 14px; color: #333; cursor: pointer;
+}
+.dcc-modal-item-label input { margin-right: 10px; transform: scale(1.2); cursor: pointer; }
+
+/* ==========================================================================
+   4. FOOTER
+   ========================================================================== */
+.dcc-modal-footer {
+    padding: 15px 20px; background: #f1f3f4; text-align: right; border-top: 1px solid #dadce0;
+}
+
+.dcc-modal-add {
+    background: #0a1f68; color: #fff; border: 1px solid #0a1f68;
+    padding: 8px 20px; cursor: pointer; border-radius: 4px; font-weight: bold; font-size: 14px;
+}
+.dcc-modal-add:hover { background: #000; border-color: #000; }
+
+.dcc-modal-cancel {
+    background: #fff; color: #333; border: 1px solid #666;
+    padding: 8px 20px; margin-left: 10px; cursor: pointer; border-radius: 4px; font-weight: bold; font-size: 14px;
+}
+.dcc-modal-cancel:hover { background: #f8f9fa; border-color: #333; }
+
+/* ==========================================================================
+   5. 3-LEVEL HIERARCHY
+   ========================================================================== */
+.dcc-level-2-wrapper {
+    margin-bottom: 8px;
+    grid-column: 1 / -1; /* Make Level 2 items take full width to allow nesting */
+}
+
+/* Indent Level 3 */
+.dcc-level-3-container {
+    margin-left: 28px; /* Indent to align with text of parent checkbox */
+    margin-top: 5px;
+    padding-left: 10px;
+    border-left: 2px solid #e0e0e0; /* Visual guide line */
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.dcc-level-3-container .dcc-modal-item-label {
+    font-size: 13px; /* Slightly smaller text */
+    color: #555;
+}
+
+/* LEVEL 4 (Stations) */
+.dcc-level-4-container {
+    margin-left: 28px;
+    margin-top: 5px;
+    padding-left: 10px;
+    border-left: 2px solid #ccc; /* Slightly lighter border */
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.dcc-level-4-container .dcc-modal-item-label {
+    font-size: 12px;
+    color: #666;
+}

@@ -1,0 +1,294 @@
+/* ==========================================================================
+   1. VARIABLES & TYPOGRAPHY
+   ========================================================================== */
+:root {
+    --dcc-font: 'Roboto', 'Noto Sans JP', sans-serif;
+    --dcc-blue: #1967d2;
+    --dcc-blue-hover: #174ea6;
+    --dcc-bg-gray: #f8f9fa;
+    --dcc-border: #dadce0;
+    --dcc-text-main: #202124;
+    --dcc-text-meta: #5f6368;
+    --dcc-text-body: #3c4043;
+}
+
+body { background-color: #fff; }
+
+/* ==========================================================================
+   2. MAIN LAYOUT (3-COLUMN FULL WIDTH)
+   ========================================================================== */
+.dcc-main-container {
+    display: flex;
+    width: 100vw !important;
+    max-width: 100% !important;
+    height: calc(100vh - 32px); /* Adjust based on your header/admin bar */
+    overflow: hidden; 
+    
+    /* Genesis Breakout Hack */
+    position: relative;
+    left: 50%; right: 50%;
+    margin-left: -50vw !important; margin-right: -50vw !important;
+    
+    background: #fff;
+    border-top: 1px solid var(--dcc-border);
+    font-family: var(--dcc-font);
+    align-items: flex-start;
+}
+
+/* ... [Keep Variables & Layout Sections] ... */
+
+/* ==========================================================================
+   FIX: SIDEBAR & FILTERS
+   ========================================================================== */
+   
+/* Fix Modal Trigger Text Alignment */
+.dcc-modal-trigger span {
+    display: flex;
+    align-items: center; /* Centers text vertically */
+    height: 100%;
+}
+
+/* Job Type Grid (Sidebar) */
+.dcc-grid-2-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+.dcc-grid-2-col .dcc-checkbox {
+    margin-bottom: 0; /* Let grid gap handle spacing */
+}
+
+/* Location Add Button alignment */
+.dcc-location-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+.dcc-btn-add {
+    flex-shrink: 0;
+    /* Match standard input height */
+    height: 40px; 
+    line-height: 1;
+}
+
+/* ... [Keep rest of CSS] ... */
+
+/* ==========================================================================
+   3. COL 1: NAVIGATION RAIL
+   ========================================================================== */
+.dcc-col-nav {
+    width: 72px; flex-shrink: 0; height: 100%; overflow-y: auto;
+    border-right: 1px solid var(--dcc-border);
+    padding-top: 20px; display: flex; flex-direction: column; align-items: center; background: #fff;
+}
+
+.dcc-nav-item {
+    display: flex; flex-direction: column; align-items: center;
+    text-decoration: none !important; margin-bottom: 24px; width: 100%;
+    transition: opacity 0.2s; color: var(--dcc-text-meta);
+}
+.dcc-nav-item:hover, .dcc-nav-item.active { color: var(--dcc-blue); }
+
+.dcc-nav-icon {
+    width: 24px; height: 24px; margin-bottom: 6px; display: flex; align-items: center; justify-content: center;
+}
+.dcc-nav-icon svg { width: 100% !important; height: 100% !important; fill: currentColor; display: block; }
+.dcc-nav-item span { font-size: 10px; font-weight: 500; }
+
+/* ==========================================================================
+   4. COL 2: SIDEBAR FILTERS
+   ========================================================================== */
+.dcc-col-filters {
+    width: 300px; flex-shrink: 0; height: 100%;
+    border-right: 1px solid var(--dcc-border);
+    display: flex; flex-direction: column; background: #fff;
+}
+
+/* Search Box */
+.dcc-search-box {
+    padding: 20px; border-bottom: 1px solid #f1f3f4; position: relative; flex-shrink: 0;
+}
+.dcc-search-box input {
+    width: 100%; padding: 12px 12px 12px 40px; background: #f1f3f4;
+    border: none; border-radius: 4px; font-size: 16px; color: var(--dcc-text-main); box-sizing: border-box;
+}
+.dcc-search-box input:focus { background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.2); outline: none; }
+.dcc-search-icon {
+    position: absolute; left: 32px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; fill: var(--dcc-text-meta);
+}
+
+/* Scroll Area */
+.dcc-scroll-content {
+    flex-grow: 1; overflow-y: auto; padding: 20px;
+    scrollbar-width: thin; scrollbar-color: #dadce0 transparent;
+}
+
+/* Headings */
+.dcc-accordion-header {
+    font-size: 14px; text-transform: uppercase; color: var(--dcc-text-meta);
+    letter-spacing: 0.5px; margin: 20px 0 12px 0;
+}
+
+/* --- LOCATION MULTI-SELECT STYLING --- */
+.dcc-location-row {
+    display: flex; gap: 10px; align-items: center; margin-bottom: 10px;
+}
+.dcc-select-wrapper { flex-grow: 1; }
+.dcc-select {
+    width: 100%; padding: 10px; border: 1px solid var(--dcc-border); border-radius: 4px;
+    background: #fff; font-family: var(--dcc-font); font-size: 14px; color: var(--dcc-text-body); cursor: pointer;
+}
+
+/* The +Add Button */
+.dcc-btn-add {
+    background: #fff; color: #000055; border: 2px solid #000055;
+    border-radius: 4px; padding: 0 15px; height: 42px; /* Matches dropdown */
+    font-weight: bold; cursor: pointer; white-space: nowrap; transition: all 0.2s;
+}
+.dcc-btn-add:hover { background: #000055; color: #fff; }
+
+/* Active Tags */
+.dcc-active-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
+.dcc-tag {
+    background: #e8f0fe; color: #1967d2; padding: 4px 10px; border: 1px solid #1967d2; border-radius: 4px;
+    font-size: 12px; font-weight: 500; display: flex; align-items: center; gap: 6px;
+}
+.dcc-tag-remove { cursor: pointer; font-weight: bold; font-size: 14px; line-height: 1; }
+.dcc-tag-remove:hover { color: #d93025; }
+
+/* --- JOB TYPE GRID (2 Columns) --- */
+.dcc-grid-2-col {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+}
+
+/* Checkboxes */
+.dcc-checkbox {
+    display: flex; align-items: center; margin-bottom: 8px; cursor: pointer; user-select: none;
+}
+.dcc-checkbox input { display: none; }
+.dcc-checkmark {
+    height: 18px; width: 18px; border: 2px solid #5f6368; border-radius: 2px; margin-right: 12px; position: relative; flex-shrink: 0;
+}
+.dcc-checkbox input:checked ~ .dcc-checkmark { background: var(--dcc-blue); border-color: var(--dcc-blue); }
+.dcc-checkbox input:checked ~ .dcc-checkmark:after {
+    content: ""; position: absolute; display: block; left: 5px; top: 1px; width: 4px; height: 10px; border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg);
+}
+.dcc-label-text { font-size: 14px; color: var(--dcc-text-body); }
+
+
+
+
+
+/* --- FILTER HEADER (Count + Clear) --- */
+.dcc-filter-header-row {
+    padding: 20px 20px 10px 20px; /* Top padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    flex-shrink: 0;
+}
+
+#dcc-results-count {
+    color: #137333; /* Google Green */
+    font-weight: 500;
+    font-size: 14px;
+}
+
+#dcc-global-clear {
+    color: #1967d2; /* Google Blue */
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+}
+#dcc-global-clear:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   5. COL 3: RESULTS (Right)
+   ========================================================================== */
+.dcc-col-results {
+    flex-grow: 1; height: 100%; overflow-y: auto; background-color: var(--dcc-bg-gray); padding: 20px;
+}
+ul.dcc-job-list {
+    list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; max-width: 100%;
+}
+
+/* Cards */
+li.dcc-card {
+    background: #fff; border: 1px solid var(--dcc-border); border-radius: 8px; padding: 24px; transition: box-shadow 0.2s;
+}
+li.dcc-card:hover { box-shadow: 0 1px 3px rgba(60,64,67,0.3); }
+.dcc-card-link { text-decoration: none !important; color: inherit !important; display: block; }
+h3.dcc-job-title { font-size: 20px; font-weight: 400; color: var(--dcc-text-main); margin: 0 0 8px 0; }
+.dcc-meta-row { display: flex; flex-wrap: wrap; gap: 10px; font-size: 14px; color: var(--dcc-text-meta); margin-bottom: 16px; }
+.dcc-meta-item { display: flex; align-items: center; gap: 6px; }
+.dcc-meta-item svg { fill: #9aa0a6; width: 16px; height: 16px; }
+.dcc-meta-item:not(:first-child)::before { content: "|"; margin-right: 10px; color: var(--dcc-border); }
+.dcc-qualifications { font-size: 14px; color: var(--dcc-text-body); line-height: 1.6; margin-bottom: 20px; }
+.dcc-btn {
+    display: inline-flex; align-items: center; justify-content: center; padding: 7px 23px; border: 1px solid var(--dcc-border); border-radius: 4px; color: var(--dcc-blue); font-weight: 500; font-size: 14px; background: #fff;
+}
+.dcc-btn:hover { background: var(--dcc-bg-hover); color: var(--dcc-blue-hover); border-color: var(--dcc-border); }
+
+/* ==========================================================================
+   6. SINGLE JOB PAGE
+   ========================================================================== */
+.dcc-single-wrapper { max-width: 1100px; margin: 40px auto; color: var(--dcc-text-main); font-family: var(--dcc-font); }
+.dcc-single-header { border-bottom: 1px solid var(--dcc-border); padding-bottom: 24px; margin-bottom: 32px; }
+.dcc-single-title { font-size: 32px; font-weight: 400; line-height: 1.2; margin: 8px 0 16px 0; color: #202124; letter-spacing: -0.5px; }
+.dcc-single-dept { font-size: 14px; color: var(--dcc-text-meta); text-transform: uppercase; font-weight: 500; letter-spacing: 0.5px; }
+.dcc-single-meta { display: flex; gap: 10px; }
+.dcc-meta-pill { background: #f1f3f4; padding: 6px 12px; border-radius: 4px; font-size: 14px; color: #3c4043; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+.dcc-single-grid { display: grid; grid-template-columns: 1fr 320px; gap: 48px; }
+.dcc-description-body { line-height: 1.7; font-size: 16px; color: #3c4043; }
+.dcc-single-sidebar { position: sticky; top: 20px; }
+.dcc-apply-card { border: 1px solid #dadce0; padding: 24px; border-radius: 8px; background: #fff; box-shadow: none; }
+.dcc-apply-card h3 { margin: 0 0 20px 0; font-size: 18px; font-weight: 400; color: #202124; }
+.dcc-details-list { list-style: none; padding: 0; margin: 0 0 24px 0; }
+.dcc-details-list li { border-bottom: 1px solid #f1f3f4; padding-bottom: 12px; margin-bottom: 12px; }
+.dcc-details-list li:last-child { border-bottom: none; margin-bottom: 0; }
+.dcc-details-list small { display: block; color: #5f6368; font-size: 12px; margin-bottom: 4px; font-weight: 500; }
+.dcc-details-list span { font-size: 14px; font-weight: 500; color: #202124; display: block; }
+.job_application .application_button { width: 100% !important; background: var(--dcc-blue) !important; color: #fff !important; padding: 10px 24px !important; text-align: center; border-radius: 4px !important; font-weight: 500 !important; font-size: 14px !important; border: none !important; }
+.single-job_listing .entry-header, .single-job_listing .entry-meta { display: none !important; }
+.single-job_listing .entry-content { width: 100%; margin: 0 !important; padding: 0 !important; }
+
+/* ==========================================================================
+   7. EMPLOYER DASHBOARD
+   ========================================================================== */
+div#job-manager-job-dashboard, .jm-dashboard.alignwide { width: 100% !important; max-width: 100% !important; display: block !important; margin: 0 !important; }
+table.job-manager-jobs { width: 100% !important; border-collapse: separate; border-spacing: 0 8px; table-layout: fixed; }
+#job-manager-job-dashboard thead th { font-size: 13px; font-weight: 500; text-transform: uppercase; color: var(--dcc-text-meta); padding: 0 20px 10px 20px; border: none; text-align: left; }
+#job-manager-job-dashboard tbody tr { background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,0.1); transition: transform 0.1s; }
+#job-manager-job-dashboard tbody tr:hover { transform: translateY(-1px); box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+#job-manager-job-dashboard td { padding: 16px 20px; border-top: 1px solid var(--dcc-border); border-bottom: 1px solid var(--dcc-border); vertical-align: middle; color: var(--dcc-text-body); font-size: 14px; }
+#job-manager-job-dashboard td:first-child { border-left: 1px solid var(--dcc-border); border-radius: 8px 0 0 8px; }
+#job-manager-job-dashboard td:last-child { border-right: 1px solid var(--dcc-border); border-radius: 0 8px 8px 0; text-align: right; }
+#job-manager-job-dashboard .job_title a { font-size: 16px; font-weight: 500; color: var(--dcc-text-main); text-decoration: none; }
+table.job-manager-jobs th.job_title, table.job-manager-jobs td.job_title { width: 50%; }
+table.job-manager-jobs th.date, table.job-manager-jobs td.date { width: 20%; }
+table.job-manager-jobs th.filled, table.job-manager-jobs td.filled { width: 10%; }
+table.job-manager-jobs th.action, table.job-manager-jobs td.action { width: 10%; }
+
+/* ==========================================================================
+   8. FORMS (General)
+   ========================================================================== */
+.job-manager-form { max-width: 800px; margin: 0 auto; color: var(--dcc-text-main); }
+.job-manager-form input[type="text"], .job-manager-form textarea, .job-manager-form select { width: 100%; padding: 10px 12px; border: 1px solid var(--dcc-border); border-radius: 4px; font-size: 16px; box-sizing: border-box; }
+.job-manager-form input:focus { border-color: var(--dcc-blue); outline: none; }
+.job-manager-form input[type="submit"] { background-color: var(--dcc-blue); color: #fff; border: none; padding: 10px 24px; border-radius: 4px; font-weight: 500; cursor: pointer; }
+
+/* ==========================================================================
+   9. RESPONSIVE
+   ========================================================================== */
+@media (max-width: 900px) {
+    .dcc-main-container { flex-direction: column; height: auto; overflow: visible; padding: 0; margin: 0 !important; width: 100% !important; left: 0; }
+    .dcc-col-nav { display: none; }
+    .dcc-col-filters { width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--dcc-border); }
+    .dcc-col-results { height: auto; min-height: 500px; }
+    .dcc-single-grid { grid-template-columns: 1fr; }
+    .dcc-single-sidebar { position: static; order: -1; margin-bottom: 20px; }
+}
